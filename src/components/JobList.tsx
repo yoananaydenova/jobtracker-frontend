@@ -6,6 +6,12 @@ interface Company {
   website?: string;
 }
 
+interface JobApplication {
+  id: number;
+  company: Company;
+}
+
+
 export default function JobList() {
 
     return (
