@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 
 interface Company {
@@ -20,6 +21,14 @@ export default function JobList() {
 
     const [applications, setApplications] = useState<JobApplication[]>([]);
 
+    useEffect(() => {
+        axios.get<JobApplication[]>('/api/applications')
+            .then(response => {
+                setApplications(response.data); 
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    }, []);
+
 
     return (
         <TableContainer component={Paper}>
@@ -33,7 +42,14 @@ export default function JobList() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {/* TODO  */}
+                    {applications.map((app) => (
+                        <TableRow key={app.id}>
+                            <TableCell>{app.position}</TableCell>
+                            <TableCell>{app.company.name}</TableCell>
+                            <TableCell>{app.status}</TableCell>
+                            <TableCell>{app.applicationDate}</TableCell>
+                        </TableRow>
+                    ))}
                 </TableBody>
             </Table>
         </TableContainer>
