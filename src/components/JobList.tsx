@@ -8,6 +8,9 @@ interface Company {
 
 interface JobApplication {
   id: number;
+  position: string;
+  status: string;
+  applicationDate: string;
   company: Company;
 }
 
