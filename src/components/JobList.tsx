@@ -1,5 +1,11 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 
+interface Company {
+  id: number;
+  name: string;
+  website?: string;
+}
+
 export default function JobList() {
 
     return (
