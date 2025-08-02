@@ -1,21 +1,25 @@
+import { useState } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 
 interface Company {
-  id: number;
-  name: string;
-  website?: string;
+    id: number;
+    name: string;
+    website?: string;
 }
 
 interface JobApplication {
-  id: number;
-  position: string;
-  status: string;
-  applicationDate: string;
-  company: Company;
+    id: number;
+    position: string;
+    status: string;
+    applicationDate: string;
+    company: Company;
 }
 
 
 export default function JobList() {
+
+    const [applications, setApplications] = useState<JobApplication[]>([]);
+
 
     return (
         <TableContainer component={Paper}>
@@ -29,7 +33,7 @@ export default function JobList() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                   {/* TODO  */}
+                    {/* TODO  */}
                 </TableBody>
             </Table>
         </TableContainer>
