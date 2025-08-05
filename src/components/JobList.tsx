@@ -6,13 +6,15 @@ interface Company {
     id: number;
     name: string;
     website?: string;
+    description?: string;
 }
 
 interface JobApplication {
     id: number;
     position: string;
-    status: string;
     applicationDate: string;
+    status: string;
+    notes?: string;
     company: Company;
 }
 
@@ -22,13 +24,13 @@ export default function JobList() {
     const [applications, setApplications] = useState<JobApplication[]>([]);
 
     useEffect(() => {
-        axios.get<JobApplication[]>('/api/applications')
-            .then(response => {
-                setApplications(response.data); 
-            })
-            .catch(error => console.error('Error fetching data:', error));
+        loadJobs();
     }, []);
 
+    const loadJobs = async () => {
+        const result = await axios.get("http://localhost:8080/api/applications");
+        setApplications(result.data);
+    };
 
     return (
         <TableContainer component={Paper}>
