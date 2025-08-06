@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Box } from '@mui/material';
+import JobForm from './JobForm';
 
 interface Company {
     id: number;
@@ -33,27 +34,30 @@ export default function JobList() {
     };
 
     return (
-        <TableContainer component={Paper}>
-            <Table>
-                <TableHead>
-                    <TableRow>
-                        <TableCell>Position</TableCell>
-                        <TableCell>Company</TableCell>
-                        <TableCell>Status</TableCell>
-                        <TableCell>Date</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {applications.map((app) => (
-                        <TableRow key={app.id}>
-                            <TableCell>{app.position}</TableCell>
-                            <TableCell>{app.company.name}</TableCell>
-                            <TableCell>{app.status}</TableCell>
-                            <TableCell>{app.applicationDate}</TableCell>
+        <Box >
+            <TableContainer component={Paper}>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Position</TableCell>
+                            <TableCell>Company</TableCell>
+                            <TableCell>Status</TableCell>
+                            <TableCell>Date</TableCell>
                         </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
+                    </TableHead>
+                    <TableBody>
+                        {applications.map((app) => (
+                            <TableRow key={app.id}>
+                                <TableCell>{app.position}</TableCell>
+                                <TableCell>{app.company.name}</TableCell>
+                                <TableCell>{app.status}</TableCell>
+                                <TableCell>{app.applicationDate}</TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+            <JobForm />
+        </Box >
     );
 }
